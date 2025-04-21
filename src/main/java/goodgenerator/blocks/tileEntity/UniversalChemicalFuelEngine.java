@@ -184,8 +184,17 @@ public class UniversalChemicalFuelEngine extends GT_MetaTileEntity_TooltipMultiB
                 .addInfo("BURNING BURNING BURNING").addInfo("Use combustible liquid to generate power.")
                 .addInfo("You need to supply Combustion Promoter to keep it running.")
                 .addInfo("This engine will consume all the fuel and combustion promoter in the hatch every second.")
+                .addInfo("Energy output to the dynamo will be distributed over the next second.")
+                .addInfo(
+                        "If the amount of energy to be produced is higher"
+                                + "than the hatch can handle then all produced energy will void.")
                 .addInfo("The efficiency is determined by the proportion of Combustion Promoter to fuel.")
-                .addInfo("The proportion is bigger, and the efficiency will be higher.")
+                .addInfo(
+                        "The higher the amount of promoter, the higher the efficiency. "
+                                + "It follows an exponential curve exp(-C/x)*1.5")
+                .addInfo("where x is the amount of fuel in liters and C depends on the fuel type:")
+                .addInfo("Diesel: C=0.04; Gas: C=0.04; Rocket fuel: C=0.005")
+                .addInfo("")
                 .addInfo("It creates sqrt(Current Output Power) pollution every second")
                 .addInfo(
                         "If you forget to supply Combustion Promoter, this engine will swallow all the fuel "
