@@ -185,32 +185,31 @@ public class UniversalChemicalFuelEngine extends GT_MetaTileEntity_TooltipMultiB
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("Chemical Engine")
             .addInfo("Controller block for the Chemical Engine")
-            .addInfo("BURNING BURNING BURNING")
-            .addInfo("Use combustible liquid to generate power.")
+            .addInfo("BURNING BURNING BURNING").addInfo("Use combustible liquid to generate power.")
             .addInfo("You need to supply Combustion Promoter to keep it running.")
-            .addInfo("It will consume all the fuel and promoter in the hatch every second.")
-            .addInfo("If the Dynamo Hatch's buffer fills up, the machine will stop.")
-            .addInfo("When turned on, there's 10-second period where the machine will not stop.")
-            .addInfo("Even if it doesn't stop, all the fuel in the hatch will be consumed.")
+            .addInfo("This engine will consume all the fuel and combustion promoter in the hatch every second.")
+            .addInfo("Energy output to the dynamo will be distributed over the next second.")
+            .addInfo(
+                    "If the amount of energy to be produced is higher"
+                            + "than the hatch can handle then all produced energy will void.")
             .addInfo("The efficiency is determined by the proportion of Combustion Promoter to fuel.")
-            .addInfo("The proportion is bigger, and the efficiency will be higher.")
-            .addInfo("Start machine with power button to force structure check.")
+            .addInfo(
+                    "The higher the amount of promoter, the higher the efficiency. "
+                            + "It follows an exponential curve exp(-C/x)*1.5")
+            .addInfo("where x is the amount of fuel in liters and C depends on the fuel type:")
+            .addInfo("Diesel: C=0.04; Gas: C=0.04; Rocket fuel: C=0.005")
+            .addInfo("")
             .addInfo("It creates sqrt(Current Output Power) pollution every second")
             .addInfo(
-                "If you forget to supply Combustion Promoter, this engine will swallow all the fuel "
-                    + EnumChatFormatting.YELLOW
-                    + "without outputting energy"
-                    + EnumChatFormatting.GRAY
-                    + ".")
-            .addInfo("The efficiency is up to 150%.")
-            .addInfo("The structure is too complex!")
-            .addInfo(BLUE_PRINT_INFO)
-            .addSeparator()
-            .beginStructureBlock(5, 4, 9, false)
-            .addMaintenanceHatch("Hint block with dot 1")
-            .addMufflerHatch("Hint block with dot 2 (fill all slots with mufflers)")
-            .addInputHatch("Hint block with dot 3 (fill all slots with input hatches)")
-            .addDynamoHatch("Hint block with dot 4")
+                    "If you forget to supply Combustion Promoter, this engine will swallow all the fuel "
+                            + EnumChatFormatting.YELLOW
+                            + "without outputting energy"
+                            + EnumChatFormatting.GRAY
+                            + ".")
+            .addInfo("The efficiency is up to 150%.").addInfo("The structure is too complex!")
+            .addInfo(BLUE_PRINT_INFO).addSeparator().beginStructureBlock(5, 4, 9, false)
+            .addMaintenanceHatch("Hint block with dot 1").addMufflerHatch("Hint block with dot 2")
+            .addInputHatch("Hint block with dot 3").addDynamoHatch("Hint block with dot 4")
             .toolTipFinisher("Good Generator");
         return tt;
     }
